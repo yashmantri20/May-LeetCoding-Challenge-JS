@@ -18,27 +18,20 @@ coordinates contains no duplicate point.*/
 
 
 var checkStraightLine = function(coordinates) {
-        count = true
-        if(coordinates.length === 2){
-            count = true
-        }
-        else{
-        const [x1,y1] = coordinates[0]
-        const [x2,y2] = coordinates[1]
+    if(coordinates.length > 2)
+    {
+        var [x1,y1] = coordinates[0]
+        var [x2,y2] = coordinates[1]
         slope = (y2-y1)/(x2-x1)
 
-        for(var i = 1 ; i<coordinates.length - 1;i+=1){
-           const [x1,y1] = coordinates[i]
-           const [x2,y2] = coordinates[i+1]
-        s = (y2-y1)/(x2-x1)
-            if(slope === s){
-                count = true
-            }
-            else{
-                count = false
-                break
+        for(var i = 1; i<coordinates.length - 1; i+=1){
+           var [x1,y1] = coordinates[i]
+           var [x2,y2] = coordinates[i+1]
+           s = (y2-y1)/(x2-x1)
+           if(slope !== s){
+                return false
             }
         }
-        }
-        return count
+    }
+    return true
 };
