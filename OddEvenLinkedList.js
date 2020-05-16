@@ -13,26 +13,18 @@ Input: 2->1->3->5->6->4->7->NULL
 Output: 2->3->6->7->1->5->4->NULL*/
 
 var oddEvenList = function(head) {
-    
-     if(!head) return null;
-    if(!head.next || !head.next.next) return head;
-    let count = 0;
-    let currentNode = head;
-    let firstEven = currentNode.next;
-   
-    while(currentNode){
-        let nextNode = currentNode.next;
-        count++;     
-        if(!currentNode.next || !currentNode.next.next){
-            if(count % 2 === 0){
-                currentNode.next = null;
-            } else {
-               currentNode.next = firstEven; 
-            }
-        } else {
-            currentNode.next = currentNode.next.next;
-        }
-        currentNode = nextNode;
+    if(head === null || head.next === null || head.next.next === null){
+        return head
     }
+     let odd = head
+     let even = head.next
+     let ehead = even
+    while(even !== null && even.next !== null){
+        odd.next = even.next;
+        odd = odd.next;
+        even.next = odd.next;
+        even = even.next
+    }
+    odd.next = ehead
     return head
 };
